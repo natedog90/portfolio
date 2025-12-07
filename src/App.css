@@ -8,10 +8,10 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #f0f2f5;
+  background-color: white; /* Changed to white */
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  color: #222;
+  color: #397cf0;
 }
 
 #root {
@@ -21,9 +21,9 @@ body {
 
 /* Navigation styles (compact) */
 .navbar {
-  background-color: rgb(28, 28, 115); /* keep it subtle */
-  padding: 2.5rem 2; /* smaller vertical padding */
-  margin-bottom: 2.55rem;
+  background-color: #133b57; /* Changed to match main content color */
+  padding: 1.5rem 2rem; /* smaller vertical padding */
+  margin-bottom: 0.5rem;
 }
 
 .navbar ul {
@@ -31,23 +31,23 @@ body {
   display: flex;
   justify-content: center;
   gap: 3rem; /* tighter spacing */
-  margin: 2;
-  padding: 2;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar a {
-  color: hwb(234 15% 62%);
+  color: hwb(0 100% 0%);
   text-decoration: none;
-  padding: 1.5rem 1.5rem; /* compact clickable area */
-  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
   font-weight: 600;
   font-size: 0.95rem;
   transition: background-color 0.18s ease, transform 0.18s ease;
 }
 
 .navbar a:hover {
-  background-color: lab(#133b57);
-  transform: translateY(-1px);
+  background-color: crimson;
+  transform: rotate(2deg);
 }
 
 /* Main layout */
@@ -71,27 +71,29 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   position: sticky;
   top: 1.25rem;
+  margin-left: -90px;
+  margin-right: auto;
 }
 
 .profile-img {
   width: 100%;
-  aspect-ratio: 1/1; /* Perfect square ratio */
-  object-fit: cover; /* This will ensure the image fills the space without stretching */
+  aspect-ratio: 1/1;
+  object-fit: cover;
   border-radius: 8px;
   margin-bottom: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 4px rgb(25, 0, 255);
   transition: transform 0.18s ease;
 }
 
 .profile-img:hover {
-  transform: scale(1.02); /* Subtle zoom effect on hover */
+  transform: scale(1.02);
 }
 
 .sidebar h1 {
   color: rgb(0, 0, 0);
   margin: 0 0 0.75rem 0;
   font-size: 1.25rem;
-  border-bottom: 2px solid rgba(68, 113, 205, 0.12);
+  border-bottom: 2px solid rgb(1, 13, 248);
   padding-bottom: 0.45rem;
 }
 
@@ -106,7 +108,7 @@ body {
   flex: 1;
   background-color: #133b57;
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 1rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
@@ -132,7 +134,71 @@ body {
   margin: 0.75rem 0;
   line-height: 1.6;
   font-size: 1.1rem;
-  color: rgb(102, 102, 102);
+  color: rgb(255, 253, 253);
+}
+
+/* Gallery preview section */
+.gallery-preview {
+  max-width: 1400px;
+  margin: 0rem auto 0rem;
+  padding: 1rem;
+  position: relative;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex; /* Added: makes images sit side by side */
+  gap: 1rem; /* Added: spacing between images */
+  flex-wrap: wrap; /* Added: allows wrapping on smaller screens */
+}
+
+.preview-img {
+  width: calc(50% - 0.5rem);
+  height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.preview-img:nth-child(2) {
+  margin-left: -6.5rem;
+  box-shadow: none; /* Remove shadow from second image */
+}
+
+.preview-img:hover {
+  transform: scale(1.02);
+}
+
+.arrow-button {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(2, 0, 62, 0.9);
+  color: rgb(255, 255, 255);
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(216, 196, 196, 0.3);
+  z-index: 10; /* Added: keeps button above images */
+}
+
+.arrow-button:hover {
+  background-color: rgb(61, 132, 255);
+  transform: translateX(5px);
+  box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+}
+
+.arrow-button svg {
+  transition: transform 0.3s ease;
+}
+
+.arrow-button:hover svg {
+  transform: translateX(5px);
 }
 
 /* Responsive design */
@@ -144,9 +210,20 @@ body {
   .sidebar {
     flex: none;
     width: 90%;
+    margin-left: 0; /* Added: removes negative margin on mobile */
   }
 
   .profile-img {
     height: 300px;
+  }
+
+  .preview-img {
+    width: 100%; /* Added: full width on mobile */
+    height: 250px; /* Added: shorter height on mobile */
+  }
+
+  .arrow-button {
+    bottom: 1rem; /* Added: adjust position on mobile */
+    right: 1rem;
   }
 }

@@ -1,16 +1,18 @@
 import "./App.css";
 import profileImage from "./assets/DSC_4789.jpg";
+import galleryImage from "./assets/DSC_0187 (1).jpg";
+import galleryImage2 from "./assets/PSX_20200409_033252_resized_1_01.jpg";
 import LogCard from "./components/LogCard";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
     <>
       <LogCard />
-
       <nav className="navbar">
         <ul>
           <li>
-            <a href="/">home</a>
+            <a href="#main-content">home</a>
           </li>
           <li>
             <a
@@ -33,16 +35,54 @@ function App() {
           />
           <h1>About Me</h1>
           <p>
-            Hi, I am Nathan I am currently an intern at IC stars chicago as an
-            aspiring web developer.
+            "My name is Nathan, and I am currently serving as an intern with IC
+            Stars in Chicago. My responsibilities include learning key concepts
+            in business analysis, project management, and technology
+            implementation, while also building interpersonal and leadership
+            skills essential for success in the tech industry.I
+            bring a diverse skill set that includes strong customer service
+            abilities, a talent for teamwork, and effective communication skills
+            honed through my background in customer-focused roles."
           </p>
         </aside>
 
         <main className="main-content">
-          <h2 id="main-title">Welcome to my developement log</h2>
+          <h2 id="main-title">Welcome to my website</h2>
 
           <div id="dev-log">
-            <p>Hello, my name is Nathan Jimenez</p>
+            <p>
+              I created this website to highlight the skills and knowledge I
+              developed during my time at IC Stars, while also showcasing my
+              work as a photographer. The gallery features a curated selection
+              of my photography, and prints are available for purchase. I invite
+              you to explore and enjoy the collection
+            </p>
+            <aside className="gallery-preview">
+              <img
+                src={galleryImage}
+                alt="Gallery preview"
+                className="preview-img"
+              />
+              <img
+                src={galleryImage2}
+                alt="Gallery preview 2"
+                className="preview-img"
+              />
+              <Link to="/gallery" className="arrow-button">
+                <span>View Gallery</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </aside>
           </div>
         </main>
       </div>
