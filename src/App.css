@@ -146,24 +146,17 @@ body {
   position: relative;
   border-radius: 40px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  display: flex; /* Added: makes images sit side by side */
-  gap: 1rem; /* Added: spacing between images */
-  flex-wrap: wrap; /* Added: allows wrapping on smaller screens */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 
 .preview-img {
-  width: calc(50% - 0.5rem);
+  width: 100%;
   height: 300px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-}
-
-.preview-img:nth-child(2) {
-  margin-left: -6.5rem;
-  box-shadow: none; /* Remove shadow from second image */
 }
 
 .preview-img:hover {
@@ -177,7 +170,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: rgba(2, 0, 62, 0.9);
+  background-color: rgba(92, 141, 255, 0.9);
   color: rgb(255, 255, 255);
   padding: 1rem 1.5rem;
   border-radius: 50px;

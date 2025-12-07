@@ -2,6 +2,8 @@ import "./App.css";
 import profileImage from "./assets/DSC_4789.jpg";
 import galleryImage from "./assets/DSC_0187 (1).jpg";
 import galleryImage2 from "./assets/PSX_20200409_033252_resized_1_01.jpg";
+import galleryImage3 from "./assets/DSC_1492_1-01.jpeg";
+import galleryImage4 from "./assets/DSC_0060.jpg";
 import LogCard from "./components/LogCard";
 import { Link } from "react-router-dom";
 
@@ -39,10 +41,10 @@ function App() {
             Stars in Chicago. My responsibilities include learning key concepts
             in business analysis, project management, and technology
             implementation, while also building interpersonal and leadership
-            skills essential for success in the tech industry.I
-            bring a diverse skill set that includes strong customer service
-            abilities, a talent for teamwork, and effective communication skills
-            honed through my background in customer-focused roles."
+            skills essential for success in the tech industry.I bring a diverse
+            skill set that includes strong customer service abilities, a talent
+            for teamwork, and effective communication skills honed through my
+            background in customer-focused roles."
           </p>
         </aside>
 
@@ -66,6 +68,16 @@ function App() {
               <img
                 src={galleryImage2}
                 alt="Gallery preview 2"
+                className="preview-img"
+              />
+              <img
+                src={galleryImage3}
+                alt="Gallery preview 3"
+                className="preview-img"
+              />
+              <img
+                src={galleryImage4}
+                alt="Gallery preview 4"
                 className="preview-img"
               />
               <Link to="/gallery" className="arrow-button">
