@@ -49,7 +49,23 @@ function App() {
         </aside>
 
         <main className="main-content">
-          <h2 id="main-title">Welcome to my website</h2>
+          <div className="title-container">
+            <h2 id="main-title">Welcome to my website</h2>
+            <Link to="/gallery" className="arrow-button">
+              <span>View Gallery</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
 
           <div id="dev-log">
             <p>
@@ -80,20 +96,6 @@ function App() {
                 alt="Gallery preview 4"
                 className="preview-img"
               />
-              <Link to="/gallery" className="arrow-button">
-                <span>View Gallery</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
             </aside>
           </div>
         </main>

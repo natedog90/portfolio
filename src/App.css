@@ -121,6 +121,13 @@ body {
   padding-bottom: 0.5rem;
 }
 
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 #dev-log {
   color: rgb(245, 238, 238);
 }
@@ -132,8 +139,8 @@ body {
 }
 
 #dev-log p {
-  margin: 0.75rem 0;
-  line-height: 1.6;
+  margin: -1rem 0 2rem 0;
+  line-height: 2;
   font-size: 1.1rem;
   color: rgb(255, 253, 253);
 }
@@ -164,9 +171,6 @@ body {
 }
 
 .arrow-button {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -178,7 +182,7 @@ body {
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(216, 196, 196, 0.3);
-  z-index: 10; /* Added: keeps button above images */
+  white-space: nowrap;
 }
 
 .arrow-button:hover {
