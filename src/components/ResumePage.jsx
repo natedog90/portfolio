@@ -13,67 +13,248 @@ function ResumePage() {
   return (
     <>
       <LogCard />
-      <nav className="navbar">
+      <nav className="navbar-clean">
         <button
-          className="hamburger"
+          className="hamburger-icon"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <rect x="4" y="7" width="22" height="3" rx="1.5" fill="white" />
+            <rect x="4" y="13.5" width="22" height="3" rx="1.5" fill="white" />
+            <rect x="4" y="20" width="22" height="3" rx="1.5" fill="white" />
+          </svg>
         </button>
-        <ul className={isMenuOpen ? "nav-menu active" : "nav-menu"}>
-          <li>
-            <Link to="/" onClick={toggleMenu}>
-              home
-            </Link>
-          </li>
-          <li>
-            <Link to="/leadership" onClick={toggleMenu}>
-              leadership
-            </Link>
-          </li>
-          <li>
-            <Link to="/business" onClick={toggleMenu}>
-              business
-            </Link>
-          </li>
-          <li>
-            <Link to="/tech" onClick={toggleMenu}>
-              tech
-            </Link>
-          </li>
-          <li>
-            <Link to="/wellness" onClick={toggleMenu}>
-              wellness
-            </Link>
-          </li>
-          <li>
-            <Link to="/career-planning" onClick={toggleMenu}>
-              career planning
-            </Link>
-          </li>
-          <li>
-            <Link to="/resume" onClick={toggleMenu}>
-              resume
-            </Link>
-          </li>
-          <li>
-            <a
-              href="https://www.linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={toggleMenu}
-            >
-              linked in
-            </a>
-          </li>
-        </ul>
+        <h1 className="signature-name">Resume</h1>
+        <a
+          href="https://www.linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="linkedin-link"
+        >
+          LinkedIn
+        </a>
       </nav>
+
+      {/* Side Panel Menu */}
+      <div className={`side-panel ${isMenuOpen ? "open" : ""}`}>
+        <button
+          className="close-btn"
+          onClick={toggleMenu}
+          aria-label="Close menu"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <div className="side-panel-content">
+          <Link to="/" onClick={toggleMenu} className="panel-link">
+            <span className="link-icon">🏠</span>
+            Home
+          </Link>
+          <Link to="/leadership" onClick={toggleMenu} className="panel-link">
+            <span className="link-icon">👑</span>
+            Leadership
+          </Link>
+          <Link to="/business" onClick={toggleMenu} className="panel-link">
+            <span className="link-icon">💼</span>
+            Business
+          </Link>
+          <Link to="/tech" onClick={toggleMenu} className="panel-link">
+            <span className="link-icon">💻</span>
+            Tech
+          </Link>
+          <Link to="/wellness" onClick={toggleMenu} className="panel-link">
+            <span className="link-icon">🌱</span>
+            Wellness
+          </Link>
+          <Link
+            to="/career-planning"
+            onClick={toggleMenu}
+            className="panel-link"
+          >
+            <span className="link-icon">🎯</span>
+            Career Planning
+          </Link>
+          <Link to="/resume" onClick={toggleMenu} className="panel-link">
+            <span className="link-icon">📄</span>
+            Resume
+          </Link>
+        </div>
+      </div>
+
+      {/* Overlay */}
+      {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
+
       <div className="page-container">
-        <h1 className="page-header">Resume</h1>
-        <div className="page-content">{/* Add your resume content here */}</div>
+        <div className="page-content">
+          <div className="content-card">
+            <h2>Contact Information</h2>
+            <p>
+              <strong>Email:</strong> Nathanrayjimenez@gmail.com
+              <br />
+              <strong>Phone:</strong> (773) 567-1653
+              <br />
+              <strong>LinkedIn:</strong>{" "}
+              <a
+                href="https://www.linkedin.com/in/Nathan-Jimenez-77"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                www.linkedin.com/in/Nathan-Jimenez-77
+              </a>
+            </p>
+          </div>
+
+          <div className="content-card">
+            <h2>Professional Summary</h2>
+            <p>
+              Proactive and detail-oriented professional transitioning into
+              technology roles such as Data Analyst, Junior Developer, and
+              Cybersecurity. Known for problem-solving, adaptability, and
+              accuracy in high-pressure environments. Skilled in leveraging
+              analytical thinking and collaboration to deliver results.
+            </p>
+          </div>
+
+          <div className="content-card">
+            <h2>Work Experience</h2>
+
+            <h3>Server | Ihop</h3>
+            <p className="job-date">2014-2020</p>
+            <ul>
+              <li>
+                Operated Point-of-Sale (POS) systems to process orders and
+                payments accurately
+              </li>
+              <li>
+                Executed precise food and beverage orders to ensure guest
+                satisfaction
+              </li>
+              <li>
+                Delivered food and drinks promptly while maintaining
+                presentation standards
+              </li>
+              <li>
+                Maintained compliance with health, safety, and sanitation
+                guidelines
+              </li>
+              <li>
+                Coordinated with team members and kitchen staff to ensure
+                seamless service
+              </li>
+              <li>
+                Managed multiple tables and tasks simultaneously in a
+                high-volume environment
+              </li>
+              <li>
+                Handled cash and credit transactions with speed and accuracy
+              </li>
+              <li>
+                Streamlined workflow by anticipating guest needs and
+                prioritizing tasks
+              </li>
+            </ul>
+
+            <h3>Sales Associate | Village Cycle Center</h3>
+            <p className="job-date">2021-2025</p>
+            <ul>
+              <li>
+                Drove sales by delivering personalized product recommendations,
+                consistently closing deals and exceeding daily sales targets
+              </li>
+              <li>
+                Leveraged in-depth product knowledge to fit and size customers
+                on new bikes, ensuring comfort, safety, and performance
+              </li>
+              <li>
+                Maximized revenue by upselling and cross-selling accessories,
+                averaging a significant increase in add-on sales per transaction
+              </li>
+              <li>
+                Engaged customers through active listening, using customer cues
+                to identify needs and recommend the right products
+              </li>
+              <li>
+                Delivered exceptional hospitality, creating a welcoming
+                environment that encouraged repeat business and long-term
+                loyalty
+              </li>
+              <li>
+                Resolved customer concerns and objections with professionalism,
+                maintaining high satisfaction and retention rates
+              </li>
+              <li>
+                Maintained up-to-date knowledge of bikes, gear, and accessories
+                to provide accurate, relevant, and compelling product guidance
+              </li>
+              <li>
+                Enhanced store presentation by merchandising products and
+                ensuring displays aligned with customer demand and brand
+                standards
+              </li>
+            </ul>
+
+            <h3>Team Assistant | Trulucks Fine Dining Restaurant</h3>
+            <p className="job-date">3/1/2025-9/3/2025</p>
+            <ul>
+              <li>
+                Polished wine glasses and silverware to fine-dining standards,
+                ensuring a spotless presentation for guests
+              </li>
+              <li>
+                Pre-bussed and reset tables efficiently, maintaining a clean and
+                welcoming dining environment
+              </li>
+              <li>
+                Prepared and baked fresh bread and sliced fruit daily,
+                contributing to high food quality and guest satisfaction
+              </li>
+              <li>
+                Upheld food safety standards and applied knowledge from Food
+                Safety Certification to ensure compliance and protect guest
+                health
+              </li>
+              <li>
+                Collaborated with kitchen and service staff to support smooth
+                operations during peak hours
+              </li>
+              <li>
+                Demonstrated adaptability and efficiency in a fast-paced dining
+                environment, balancing multiple responsibilities under pressure
+              </li>
+            </ul>
+          </div>
+
+          <div className="content-card">
+            <h2>Skills</h2>
+            <ul>
+              <li>Data Analysis</li>
+              <li>Problem-Solving</li>
+              <li>Time Management</li>
+              <li>Customer Service</li>
+              <li>POS Systems</li>
+              <li>Communication</li>
+              <li>Adaptability</li>
+              <li>Attention to Detail</li>
+            </ul>
+          </div>
+
+          <div className="content-card">
+            <h2>Certifications</h2>
+            <ul>
+              <li>Food Safety Certification</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </>
   );
