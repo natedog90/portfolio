@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import LogCard from "./LogCard";
+import unitedTeamPhoto from "../assets/united-airlines-team.jpg";
 import "../App.css";
 
 function Business() {
@@ -25,7 +26,7 @@ function Business() {
             <rect x="4" y="20" width="22" height="3" rx="1.5" fill="white" />
           </svg>
         </button>
-        <h1 className="signature-name">Buisiness</h1>
+        <h1 className="signature-name">Business</h1>
         <a
           href="https://www.linkedin.com"
           target="_blank"
@@ -36,7 +37,6 @@ function Business() {
         </a>
       </nav>
 
-      {/* Side Panel Menu */}
       <div className={`side-panel ${isMenuOpen ? "open" : ""}`}>
         <button
           className="close-btn"
@@ -91,23 +91,34 @@ function Business() {
         </div>
       </div>
 
-      {/* Overlay */}
       {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
 
       <div className="page-container">
         <div className="page-content">
-          <div className="content-card">
-            <h2>United Airlines Project</h2>
-            <p>
-              During my internship, one of the most impactful experiences was
-              our project with United Airlines. We built SQL queries, designed
-              visuals in Power BI, and learned how to structure ERDs to make
-              sense of complex data. Together, we created an app that aggregated
-              customer data into a centralized platform—turning raw information
-              into actionable insights. By tracking trends in NPS scores and
-              sentiment, we helped United better understand customer needs and
-              identify opportunities for improvement.
-            </p>
+          <div className="content-card united-card">
+            <div className="card-content-wrapper">
+              <div className="card-text">
+                <h2>United Airlines Project</h2>
+                <p>
+                  During my internship, one of the most impactful experiences
+                  was our project with United Airlines. We built SQL queries,
+                  designed visuals in Power BI, and learned how to structure
+                  ERDs to make sense of complex data. Together, we created an
+                  app that aggregated customer data into a centralized
+                  platform—turning raw information into actionable insights. By
+                  tracking trends in NPS scores and sentiment, we helped United
+                  better understand customer needs and identify opportunities
+                  for improvement.
+                </p>
+              </div>
+              <div className="card-image">
+                <img
+                  src={unitedTeamPhoto}
+                  alt="United Airlines Team at i.c.stars"
+                  className="team-photo"
+                />
+              </div>
+            </div>
           </div>
 
           <div className="content-card">

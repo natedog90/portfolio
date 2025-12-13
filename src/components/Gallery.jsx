@@ -1,63 +1,70 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import LogCard from "./LogCard";
+import galleryImage1 from "../assets/DSC_5735.jpg";
+import galleryImage2 from "../assets/DSC_1492_1-01.jpeg";
+import galleryImage3 from "../assets/DSC_0060.jpg";
+import chicagoBlur from "../assets/chicago-blur.jpg";
+import chicagoSkyline from "../assets/chicago-skyline.jpg";
+import deer from "../assets/deer.jpg";
+import lakefront from "../assets/lakefront.jpg";
+import fireworks from "../assets/fireworks.jpg";
 import "../App.css";
 
-// Import all gallery images
-import img1 from "../assets/DSC_4789.jpg";
-import img2 from "../assets/DSC_0187 (1).jpg";
-import img3 from "../assets/PSX_20200409_033252_resized_1_01.jpg";
-import img4 from "../assets/DSC_1492_1-01.jpeg";
-import img5 from "../assets/DSC_0060.jpg";
+const images = [
+  galleryImage1,
+  galleryImage2,
+  galleryImage3,
+  chicagoBlur,
+  chicagoSkyline,
+  deer,
+  lakefront,
+  fireworks,
+];
 
 function Gallery() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [showControls, setShowControls] = useState(true);
-  const [hideTimeout, setHideTimeout] = useState(null);
-  const [imageTransitioning, setImageTransitioning] = useState(false);
-
-  const galleryImages = [
-    { src: img1, alt: "Photography 1" },
-    { src: img2, alt: "Photography 2" },
-    { src: img3, alt: "Photography 3" },
-    { src: img4, alt: "Photography 4" },
-    { src: img5, alt: "Photography 5" },
-  ];
+  const [imageLoaded, setImageLoaded] = useState(true);
+  const [fadeOut, setFadeOut] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const openLightbox = (index) => {
-    setCurrentImageIndex(index);
+    setCurrentIndex(index);
     setLightboxOpen(true);
     setIsPlaying(false);
+    setImageLoaded(true);
   };
 
   const closeLightbox = () => {
     setLightboxOpen(false);
     setIsPlaying(false);
+    setIsFullscreen(false);
   };
 
   const nextImage = () => {
-    setImageTransitioning(true);
+    setFadeOut(true);
     setTimeout(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
-      setImageTransitioning(false);
+      setCurrentIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+      setFadeOut(false);
     }, 400);
   };
 
   const prevImage = () => {
-    setImageTransitioning(true);
+    setFadeOut(true);
     setTimeout(() => {
-      setCurrentImageIndex((prev) =>
-        prev === 0 ? galleryImages.length - 1 : prev - 1
+      setCurrentIndex((prevIndex) =>
+        prevIndex === 0 ? images.length - 1 : prevIndex - 1
       );
-      setImageTransitioning(false);
+      setFadeOut(false);
     }, 400);
   };
 
@@ -69,27 +76,14 @@ function Gallery() {
     setIsFullscreen(!isFullscreen);
   };
 
-  const handleMouseMove = () => {
-    setShowControls(true);
-    if (hideTimeout) clearTimeout(hideTimeout);
-
-    if (isFullscreen || isPlaying) {
-      const timeout = setTimeout(() => {
-        setShowControls(false);
-      }, 2000);
-      setHideTimeout(timeout);
-    }
-  };
-
-  // Slideshow auto-advance
   useEffect(() => {
-    if (isPlaying && lightboxOpen) {
-      const interval = setInterval(nextImage, 5000); // 5 seconds per image
-      return () => clearInterval(interval);
+    let interval;
+    if (isPlaying) {
+      interval = setInterval(nextImage, 5000);
     }
-  }, [isPlaying, lightboxOpen, currentImageIndex]);
+    return () => clearInterval(interval);
+  }, [isPlaying, currentIndex]);
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (!lightboxOpen) return;
@@ -105,7 +99,7 @@ function Gallery() {
 
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [lightboxOpen]);
+  }, [lightboxOpen, currentIndex]);
 
   return (
     <>
@@ -133,7 +127,6 @@ function Gallery() {
         </a>
       </nav>
 
-      {/* Side Panel Menu */}
       <div className={`side-panel ${isMenuOpen ? "open" : ""}`}>
         <button
           className="close-btn"
@@ -188,7 +181,6 @@ function Gallery() {
         </div>
       </div>
 
-      {/* Overlay */}
       {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
 
       <div className="page-container">
@@ -203,15 +195,15 @@ function Gallery() {
           </div>
 
           <div className="gallery-grid">
-            {galleryImages.map((image, index) => (
+            {images.map((image, index) => (
               <div
                 key={index}
                 className="gallery-item"
                 onClick={() => openLightbox(index)}
               >
                 <img
-                  src={image.src}
-                  alt={image.alt}
+                  src={image}
+                  alt={`Gallery image ${index + 1}`}
                   loading="lazy"
                   decoding="async"
                 />
@@ -224,62 +216,40 @@ function Gallery() {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
       {lightboxOpen && (
-        <div
-          className="lightbox"
-          onClick={closeLightbox}
-          onMouseMove={handleMouseMove}
-        >
+        <div className="lightbox" onClick={closeLightbox}>
           <div
             className="lightbox-content"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              className={`lightbox-close ${
-                !showControls && (isFullscreen || isPlaying) ? "hidden" : ""
-              }`}
-              onClick={closeLightbox}
-            >
+            <button className="lightbox-close" onClick={closeLightbox}>
               ✕
             </button>
 
-            <button
-              className={`lightbox-prev ${
-                !showControls && (isFullscreen || isPlaying) ? "hidden" : ""
-              }`}
-              onClick={prevImage}
-            >
+            <button className="lightbox-prev" onClick={prevImage}>
               ❮
             </button>
 
             <img
-              src={galleryImages[currentImageIndex].src}
-              alt={galleryImages[currentImageIndex].alt}
+              src={images[currentIndex]}
+              alt={`Gallery image ${currentIndex + 1}`}
               className={`lightbox-image ${isFullscreen ? "fullscreen" : ""} ${
-                imageTransitioning ? "fade-out" : "fade-in"
+                fadeOut ? "fade-out" : "fade-in"
               }`}
+              loading="eager"
+              decoding="async"
             />
 
-            <button
-              className={`lightbox-next ${
-                !showControls && (isFullscreen || isPlaying) ? "hidden" : ""
-              }`}
-              onClick={nextImage}
-            >
+            <button className="lightbox-next" onClick={nextImage}>
               ❯
             </button>
 
-            <div
-              className={`lightbox-controls ${
-                !showControls && (isFullscreen || isPlaying) ? "hidden" : ""
-              }`}
-            >
+            <div className="lightbox-controls">
               <button className="slideshow-btn" onClick={toggleSlideshow}>
                 {isPlaying ? "⏸ Pause" : "▶ Play Slideshow"}
               </button>
               <div className="image-counter">
-                {currentImageIndex + 1} / {galleryImages.length}
+                {currentIndex + 1} / {images.length}
               </div>
               <button className="fullscreen-btn" onClick={toggleFullscreen}>
                 {isFullscreen ? "⊟ Fit Screen" : "⊡ Fullscreen"}
