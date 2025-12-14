@@ -9,6 +9,11 @@ import chicagoSkyline from "../assets/chicago-skyline.jpg";
 import deer from "../assets/deer.jpg";
 import lakefront from "../assets/lakefront.jpg";
 import fireworks from "../assets/fireworks.jpg";
+import monumentReflection from "../assets/monument-reflection.jpg";
+import riverBridges from "../assets/river-bridges.jpg";
+import chicagoTheater from "../assets/chicago-theater.jpg";
+import jellyfish from "../assets/jellyfish.jpg";
+import bridgeNight from "../assets/bridge-night.jpg";
 import "../App.css";
 
 const images = [
@@ -20,6 +25,11 @@ const images = [
   deer,
   lakefront,
   fireworks,
+  monumentReflection,
+  riverBridges,
+  chicagoTheater,
+  jellyfish,
+  bridgeNight,
 ];
 
 function Gallery() {
